@@ -18,11 +18,13 @@ package lk.ac.mrt.cse.dbs.simpleexpensemanager.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.R;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.ExpenseManager;
@@ -32,12 +34,15 @@ import static lk.ac.mrt.cse.dbs.simpleexpensemanager.Constants.EXPENSE_MANAGER;
  *
  */
 public class AddAccountFragment extends Fragment implements View.OnClickListener {
+    private final String TAG = "140062D";
+
     private ExpenseManager currentExpenseManager;
     private EditText accountNumber;
     private EditText bankName;
     private EditText accountHolderName;
     private EditText initialBalance;
     private Button addAccount;
+
 
     public static AddAccountFragment newInstance(ExpenseManager expenseManager) {
         AddAccountFragment addAccountFragment = new AddAccountFragment();
@@ -68,6 +73,7 @@ public class AddAccountFragment extends Fragment implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_account:
+                Log.i(TAG,"Add Account Button Pressed");
                 String accountNumStr = accountNumber.getText().toString();
                 String bankNameStr = bankName.getText().toString();
                 String accountHolderStr = accountHolderName.getText().toString();

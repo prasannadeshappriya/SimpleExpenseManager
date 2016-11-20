@@ -20,6 +20,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +42,16 @@ import static lk.ac.mrt.cse.dbs.simpleexpensemanager.Constants.EXPENSE_MANAGER;
  *
  */
 public class ManageExpensesFragment extends Fragment implements View.OnClickListener {
+    private final String TAG = "140062D";
     private Button submitButton;
     private EditText amount;
     private Spinner accountSelector;
     private RadioGroup expenseTypeGroup;
     private DatePicker datePicker;
     private ExpenseManager currentExpenseManager;
+
+    private String DATABASE_NAME = "140062Dtmp1.db";
+    private int DATABASE_VERSION = 1;
 
     public static ManageExpensesFragment newInstance(ExpenseManager expenseManager) {
         ManageExpensesFragment manageExpensesFragment = new ManageExpensesFragment();
@@ -68,13 +73,15 @@ public class ManageExpensesFragment extends Fragment implements View.OnClickList
         amount = (EditText) rootView.findViewById(R.id.amount);
         accountSelector = (Spinner) rootView.findViewById(R.id.account_selector);
         currentExpenseManager = (ExpenseManager) getArguments().get(EXPENSE_MANAGER);
-        ArrayAdapter<String> adapter =
-                null;
+        ArrayAdapter<String> adapter = null;
         if (currentExpenseManager != null) {
             adapter = new ArrayAdapter<>(this.getActivity(), R.layout.support_simple_spinner_dropdown_item,
                     currentExpenseManager.getAccountNumbersList());
         }
-        accountSelector.setAdapter(adapter);
+
+        if(adapter!=null) {
+            accountSelector.setAdapter(adapter);
+        }
 
         expenseTypeGroup = (RadioGroup) rootView.findViewById(R.id.expense_type_group);
         RadioButton expenseType = (RadioButton) rootView.findViewById(R.id.expense);

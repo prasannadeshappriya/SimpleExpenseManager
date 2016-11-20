@@ -68,6 +68,7 @@ public class ExpenseLogsFragment extends Fragment {
 
     private void generateTransactionsTable(View rootView, TableLayout logsTableLayout,
                                            List<Transaction> transactionList) {
+
         for (Transaction transaction : transactionList) {
             TableRow tr = new TableRow(rootView.getContext());
             TextView lDateVal = new TextView(rootView.getContext());
@@ -90,6 +91,8 @@ public class ExpenseLogsFragment extends Fragment {
             tr.addView(lAmountVal);
 
             logsTableLayout.addView(tr);
+
         }
+
     }
 }

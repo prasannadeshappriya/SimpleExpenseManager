@@ -14,7 +14,10 @@
  *
  */
 
+
 package lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl;
+
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,12 +29,16 @@ import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.exception.InvalidAccountExcep
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.Account;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.ExpenseType;
 
+
 /**
  * This is an In-Memory implementation of the AccountDAO interface. This is not a persistent storage. A HashMap is
  * used to store the account details temporarily in the memory.
  */
+
+
 public class InMemoryAccountDAO implements AccountDAO {
     private final Map<String, Account> accounts;
+    private final String TAG = "140062D";
 
     public InMemoryAccountDAO() {
         this.accounts = new HashMap<>();
@@ -59,6 +66,7 @@ public class InMemoryAccountDAO implements AccountDAO {
     @Override
     public void addAccount(Account account) {
         accounts.put(account.getAccountNo(), account);
+        Log.i(TAG," AddAcount Event in InMemory Triggered");
     }
 
     @Override
@@ -89,3 +97,4 @@ public class InMemoryAccountDAO implements AccountDAO {
         accounts.put(accountNo, account);
     }
 }
+
